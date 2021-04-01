@@ -5,6 +5,7 @@
       SELECT * FROM `tin` ORDER BY idTin DESC LIMIT 0,1
     ";
     $result = mysqli_query($conn, $qr);
+    // echo $result ? "true" : "false";
     return $result;
   }
 
@@ -52,5 +53,14 @@
     $loaitin = mysqli_query($conn, $qr);
     $row = mysqli_fetch_array($loaitin);
     return $row['Ten'];
+  }
+
+  function QuangCao($vitri) {
+    $conn = myConnect();
+    $qr = "
+      SELECT * FROM quangcao WHERE vitri = $vitri
+    ";
+    $result = mysqli_query($conn, $qr);
+    return $result;
   }
 ?>

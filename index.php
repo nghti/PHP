@@ -43,13 +43,13 @@
           $tinmoinhat_mottin = TinMoiNhat_MotTin();
           $row_tinmoinhat_mottin = mysqli_fetch_array($tinmoinhat_mottin);
       ?>
-      <div class="col-sm-8 border-end border-secondary">
+      <div class="col-sm-6 border-end border-secondary">
         <h2>Slide</h2>
         <a href="index.php?p=list&idTin=<?php echo $row_tinmoinhat_mottin['idTin'] ?>">
           <?php echo $row_tinmoinhat_mottin['TieuDe'] ?>
         </a>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <h2>Sidebar</h2>
         <?php
             $tinmoinhat_bontin = TinMoiNhat_BonTin();
@@ -65,6 +65,23 @@
         <?php
             }
         ?>
+      </div>
+      <div class="col-sm-3 border-start">
+        <ul>
+        <?php 
+          $quangcao = QuangCao(1);
+          while  ($row_quangcao = mysqli_fetch_array($quangcao) ) {
+
+        ?>
+          <li>
+            <a href="<?php echo $row_quangcao['Url'] ?>">
+              <img src="img/<?php echo $row_quangcao['urlHinh'] ?>" alt="">
+            </a>
+          </li>
+        <?php 
+          }
+        ?>
+        </ul>
       </div>
     </div>
     <div class="row border border-secondary">
@@ -102,39 +119,78 @@
             default : require "blocks/menu.php";
           }
         ?>
-      </div>
+        </div>
       </div>
       <div class="col-sm-3">
-        <?php
-          $idTin = 2;
-          $mottin = TinMoiNhat_TheoLoaiTin_MotTin($idTin);
-          $row_mottin = mysqli_fetch_array($mottin);
-        ?>
-        <h2><?php echo TenLoaitin($idTin) ?></h2>
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">
+        <div class="box">
+          <?php
+            $idTin = 2;
+          ?>
+          <h2><?php echo TenLoaitin($idTin) ?></h2>
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
               <?php
-                echo $row_mottin['TieuDe']
+                $mottin = TinMoiNhat_TheoLoaiTin_MotTin($idTin);
+                $row_mottin = mysqli_fetch_array($mottin);
               ?>
-            </h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-          <ul class="list-group list-group-flush">
-            <?php
-              $bontin = TinMoiNhat_TheoLoaiTin_BonTin($idTin);
-              while( $row_bontin = mysqli_fetch_array($bontin) ) {
-            ?>
-            <li class="list-group-item">
+              <h5 class="card-title">
                 <?php
-                  echo $row_bontin['TieuDe']
+                  echo $row_mottin['TieuDe']
                 ?>
-            </li>
-            <?php
-              }
-            ?>
-          </ul>
+              </h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            <ul class="list-group list-group-flush">
+              <?php
+                $bontin = TinMoiNhat_TheoLoaiTin_BonTin($idTin);
+                while( $row_bontin = mysqli_fetch_array($bontin) ) {
+              ?>
+              <li class="list-group-item">
+                  <?php
+                    echo $row_bontin['TieuDe']
+                  ?>
+              </li>
+              <?php
+                }
+              ?>
+            </ul>
+          </div>
+        </div>
+        <div class="box">
+          <?php
+            $idTin = 3;
+          ?>
+          <h2><?php echo TenLoaitin($idTin) ?></h2>
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <?php
+                $mottin = TinMoiNhat_TheoLoaiTin_MotTin($idTin);
+                $row_mottin = mysqli_fetch_array($mottin);
+              ?>
+              <h5 class="card-title">
+                <?php
+                  echo $row_mottin['TieuDe']
+                ?>
+              </h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            <ul class="list-group list-group-flush">
+              <?php
+                $bontin = TinMoiNhat_TheoLoaiTin_BonTin($idTin);
+                while( $row_bontin = mysqli_fetch_array($bontin) ) {
+              ?>
+              <li class="list-group-item">
+                  <?php
+                    echo $row_bontin['TieuDe']
+                  ?>
+              </li>
+              <?php
+                }
+              ?>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
